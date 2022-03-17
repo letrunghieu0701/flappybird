@@ -10,4 +10,16 @@ public static class Extensions
         GameObject go = Resources.Load<GameObject>(name);
         return go;
     }
+
+    public static Rigidbody2D GetRigidbody2D(GameObject go)
+    {
+        return go.GetComponent<Rigidbody2D>();
+    }
+
+    public static bool AddRigidbody2D(GameObject go)
+    {
+        go.AddComponent<Rigidbody2D>();
+        Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
+        return (rb != null);
+    }
 }

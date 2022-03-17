@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
 
-
+    public GameObject bird = null;
 
     void Awake()
     {
@@ -48,13 +48,15 @@ public class GameController : MonoBehaviour
     void Start()
     {
         luaStart();
+
+        bird.AddComponent<Rigidbody2D>();
     }
 
 
     void Update()
     {
         //GameObject go = Resources.Load<GameObject>("Pipe");
-        //Instantiate(go, new Vector3(0, Random.Range(0.8f, 4.5f), 0), Quaternion.identity);
+        // Instantiate(go, new Vector3(0, Random.Range(0.8f, 4.5f), 0), Quaternion.identity);
 
         // m_pipeSpawnTime += Time.deltaTime;
 
@@ -71,7 +73,9 @@ public class GameController : MonoBehaviour
         //     m_pipeSpawnTime = 0;
         // }
 
-
+        // bird.GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
+        // bird.GetComponent<Rigidbody2D>().AddForce();
+        
 
         luaUpdate();
         float a = Time.time;

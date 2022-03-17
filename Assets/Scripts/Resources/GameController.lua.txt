@@ -14,6 +14,18 @@ bird = nill
 function LuaStart()
     birdPos = GetVector3D(birdStartPos, 0, 0)
     bird = Spawn("Bird", birdPos)
+    --print(bird == nil)
+
+    
+
+    rb = CS.Extensions.GetRigidbody2D(bird)
+    print(rb == nil)
+    rb:AddForce(GetVector2D(0, 5))
+
+    -- bird:AddComponent(typeof(UE.Rigidbody2D))
+    --rb = CS.Extensions.GetRigidbody2D(bird)
+
+
 end
 
 
@@ -23,15 +35,15 @@ function LuaUpdate()
     m_pipeSpawnTime = m_pipeSpawnTime + UE.Time.deltaTime
 
     if (m_pipeSpawnTime >= pipeSpawnTime) then      
-        UE.Debug.Log("Đã tới lúc spawn pipe")
+        --UE.Debug.Log("Đã tới lúc spawn pipe")
         SpawnPipes()
 
         m_pipeSpawnTime = 0
     end
 
-    if(bird ~= nil) then
-        print("bird ~= nil")
-    end
+    --if(bird ~= nil) then
+      --  print("bird ~= nil")
+    --end
 end
 
 
@@ -52,7 +64,9 @@ end
 
 function Spawn(path, pos)
     go = CS.Extensions.LoadPrefab(path)
-    return UE.Object.Instantiate(go, pos, UE.Quaternion.identity)
+    local x = UE.Object.Instantiate(go, pos, UE.Quaternion.identity)
+    --print(x == nil)
+    return x
 end
 
 
@@ -60,7 +74,9 @@ function GetVector3D(x, y, z)
     return UE.Vector3(x, y, z)
 end
 
-
+function GetVector2D(x, y)
+    return UE.Vector2(x, y)
+end
 
 
 
