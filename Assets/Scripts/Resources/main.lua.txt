@@ -1,0 +1,6 @@
+UE = CS.UnityEngine
+
+function GetVector3D(x, y, z)
+    return UE.Vector3(x, y, z)
+end
+
