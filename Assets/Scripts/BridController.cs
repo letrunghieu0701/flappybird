@@ -29,7 +29,8 @@ public class BridController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space pressed => Jump");
-            rb.AddForce(new Vector2(0, jumpForce));
+            // rb.AddForce(new Vector2(0, jumpForce));
+            rb.velocity = Vector2.up * new Vector2(0, jumpForce);
         }
     }
 }

@@ -6,6 +6,9 @@ using XLua;
 [CSharpCallLua]
 public delegate Vector3 GetVector3DDelegate(float x, float y, float z);
 
+public delegate void StartDelegate();
+public delegate void UpdateDelegate();
+
 public class GameController : MonoBehaviour
 {
     LuaEnv luaEnv = null;
@@ -21,35 +24,55 @@ public class GameController : MonoBehaviour
     GetVector3DDelegate getVector3DDelegate;
     LuaFunction GetVector3D = null;
 
-    // Start is called before the first frame update
-    void Start()
+    StartDelegate luaStart = null;
+    UpdateDelegate luaUpdate = null;
+
+
+
+    void Awake()
     {
         luaEnv = new LuaEnv();
-
         luaEnv.DoString("require 'main'");
+
         getVector3DDelegate =  luaEnv.Global.Get<GetVector3DDelegate>("GetVector3D");
         // GetVector3D =  luaEnv.Global.Get<LuaFunction>("GetVector3D");
 
-        SpawnPipes(); 
+        luaStart = luaEnv.Global.Get<StartDelegate>("LuaStart");
+        luaUpdate = luaEnv.Global.Get<UpdateDelegate>("LuaUpdate");
+
+
+
+
+
+        // SpawnPipes();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        luaStart();
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_pipeSpawnTime += Time.deltaTime;
+        // m_pipeSpawnTime += Time.deltaTime;
 
-        if(m_pipeSpawnTime >= pipeSpawnTime)
-        {
-            Destroy(pipeUp);
-            Destroy(pipeDown);
+        // if(m_pipeSpawnTime >= pipeSpawnTime)
+        // {
+        //     Destroy(pipeUp);
+        //     Destroy(pipeDown);
             
-            if(pipeUp && pipeDown)
-            {
-                SpawnPipes();
-            }
+        //     if(pipeUp && pipeDown)
+        //     {
+        //         SpawnPipes();
+        //     }
 
-            m_pipeSpawnTime = 0;
-        }
+        //     m_pipeSpawnTime = 0;
+        // }
+
+        luaUpdate();
+        float a = Time.time;
     }
 
     void SpawnPipes()
