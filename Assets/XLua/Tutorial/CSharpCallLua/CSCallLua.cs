@@ -76,6 +76,7 @@ namespace Tutorial
             Debug.Log("_G.b = " + luaenv.Global.Get<string>("b"));
             Debug.Log("_G.c = " + luaenv.Global.Get<bool>("c"));
 
+
             DClass d = luaenv.Global.Get<DClass>("d");//映射到有对应字段的class，by value
             Debug.Log("_G.d = {f1=" + d.f1 + ", f2=" + d.f2 + "}");
 
@@ -85,28 +86,10 @@ namespace Tutorial
             List<double> d2 = luaenv.Global.Get<List<double>>("d"); //映射到List<double>，by value
             Debug.Log("_G.d.len = " + d2.Count);
 
-
-
-
-
-
-
-
-
             ItfD d3 = luaenv.Global.Get<ItfD>("d"); //映射到interface实例，by ref，这个要求interface加到生成列表，否则会返回null，建议用法
             d3.f2 = 1000;
             Debug.Log("_G.d = {f1=" + d3.f1 + ", f2=" + d3.f2 + "}");
             Debug.Log("_G.d:add(1, 2)=" + d3.add(1, 2));
-
-
-
-
-
-
-
-
-
-
 
             LuaTable d4 = luaenv.Global.Get<LuaTable>("d");//映射到LuaTable，by ref
             Debug.Log("_G.d = {f1=" + d4.Get<int>("f1") + ", f2=" + d4.Get<int>("f2") + "}");

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
+
 [CSharpCallLua]
 public delegate Vector3 GetVector3DDelegate(float x, float y, float z);
-
 public delegate void StartDelegate();
 public delegate void UpdateDelegate();
 
@@ -32,30 +32,30 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         luaEnv = new LuaEnv();
-        luaEnv.DoString("require 'main'");
+        luaEnv.DoString("require 'GameController'");
 
         getVector3DDelegate =  luaEnv.Global.Get<GetVector3DDelegate>("GetVector3D");
+
         // GetVector3D =  luaEnv.Global.Get<LuaFunction>("GetVector3D");
 
         luaStart = luaEnv.Global.Get<StartDelegate>("LuaStart");
         luaUpdate = luaEnv.Global.Get<UpdateDelegate>("LuaUpdate");
 
-
-
-
-
         // SpawnPipes();
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         luaStart();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        //GameObject go = Resources.Load<GameObject>("Pipe");
+        //Instantiate(go, new Vector3(0, Random.Range(0.8f, 4.5f), 0), Quaternion.identity);
+
         // m_pipeSpawnTime += Time.deltaTime;
 
         // if(m_pipeSpawnTime >= pipeSpawnTime)
@@ -70,6 +70,8 @@ public class GameController : MonoBehaviour
 
         //     m_pipeSpawnTime = 0;
         // }
+
+
 
         luaUpdate();
         float a = Time.time;

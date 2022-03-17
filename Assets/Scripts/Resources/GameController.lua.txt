@@ -1,0 +1,48 @@
+UE = CS.UnityEngine
+-- local util = require 'xlua.util'
+
+pipeSpawnTime = 2
+m_pipeSpawnTime = 0
+distanceTwoPipes = 4.5
+startPosX = 5
+
+
+function GetVector3D(x, y, z)
+    return UE.Vector3(x, y, z)
+end
+
+
+
+
+function LuaStart()
+
+end
+
+
+
+
+
+
+function LuaUpdate()
+    m_pipeSpawnTime = m_pipeSpawnTime + UE.Time.deltaTime
+
+    if (m_pipeSpawnTime >= pipeSpawnTime) then      
+        UE.Debug.Log("Đã tới lúc spawn pipe")
+        Spawn()
+        m_pipeSpawnTime = 0
+    end
+end
+
+
+
+
+function Spawn()
+    go = CS.Extensions.LoadPrefab('Pipe')
+    --UE.Object.Instantiate(go, UE.Vector3(UE.Random.Range(0.8, 4.5), UE.Random.Range(0.8, 4.5), 0), UE.Quaternion.identity)
+    UE.Object.Instantiate(go, GetVector3D(UE.Random.Range(0.8, 4.5), UE.Random.Range(0.8, 4.5), 0), UE.Quaternion.identity)
+end
+
+
+
+
+
