@@ -4,21 +4,17 @@ UE = CS.UnityEngine
 pipeSpawnTime = 2
 m_pipeSpawnTime = 0
 distanceTwoPipes = 4.5
-startPosX = 5
+pipeStartPosX = 6
+pipePosMax = 4.5
+pipePosMin = 0.8
 
-
-function GetVector3D(x, y, z)
-    return UE.Vector3(x, y, z)
-end
-
-
-
+birdStartPos = -4
+bird = nill
 
 function LuaStart()
-
+    birdPos = GetVector3D(birdStartPos, 0, 0)
+    bird = Spawn("Bird", birdPos)
 end
-
-
 
 
 
@@ -28,18 +24,40 @@ function LuaUpdate()
 
     if (m_pipeSpawnTime >= pipeSpawnTime) then      
         UE.Debug.Log("Đã tới lúc spawn pipe")
-        Spawn()
+        SpawnPipes()
+
         m_pipeSpawnTime = 0
+    end
+
+    if(bird ~= nil) then
+        print("bird ~= nil")
     end
 end
 
 
 
 
-function Spawn()
-    go = CS.Extensions.LoadPrefab('Pipe')
-    --UE.Object.Instantiate(go, UE.Vector3(UE.Random.Range(0.8, 4.5), UE.Random.Range(0.8, 4.5), 0), UE.Quaternion.identity)
-    UE.Object.Instantiate(go, GetVector3D(UE.Random.Range(0.8, 4.5), UE.Random.Range(0.8, 4.5), 0), UE.Quaternion.identity)
+
+
+
+
+function SpawnPipes()
+    pipeUpPos = GetVector3D(pipeStartPosX, UE.Random.Range(pipePosMin, pipePosMax), 0)
+    pipeDownPos = pipeUpPos - GetVector3D(0, distanceTwoPipes, 0)
+
+    pipeUp = Spawn("Pipe", pipeUpPos)
+    pipeDown = Spawn("Pipe", pipeDownPos)
+end
+
+
+function Spawn(path, pos)
+    go = CS.Extensions.LoadPrefab(path)
+    return UE.Object.Instantiate(go, pos, UE.Quaternion.identity)
+end
+
+
+function GetVector3D(x, y, z)
+    return UE.Vector3(x, y, z)
 end
 
 
