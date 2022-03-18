@@ -1,10 +1,10 @@
 UE = CS.UnityEngine
 
 velocity = 2
-jumpForce = 12
+jumpForce = 5
 
 bird = nill
-rb = nil
+bird_rb = nil
 
 function Awake()
 
@@ -12,34 +12,18 @@ end
 
 function LuaStart()
     --print("Goi start tu Lua")
-    --[[ print("Goi start tu Lua")
-
-    bird = UE.BirdController.gameObject
-    --print(bird == nill)
-    rb = CS.Extensions.GetRigidbody2D(bird)
-    print(rb == nil)
-    rb:AddForce(GetVector2D(0, 5))
-    --]]
     
     bird = self.gameObject
-    rigid = bird:GetComponent(typeof(UE.Rigidbody2D))
-    --print(bird == nil)
-    print("hha")
-    print(rigid == nil)
-
-
+    bird_rb = CS.Extensions.AddRigidbody2D(bird)
+    --bird_rb = bird:GetComponent(typeof(UE.Rigidbody2D))
 end
-
 
 function LuaUpdate()
     if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
         print("Space pressed")
+        bird_rb.velocity = UE.Vector2.up * jumpForce
     end
 end
-
-
-
-
 
 
 function GetVector3D(x, y, z)

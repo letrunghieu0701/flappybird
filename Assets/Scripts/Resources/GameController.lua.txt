@@ -1,6 +1,7 @@
 UE = CS.UnityEngine
 -- local util = require 'xlua.util'
 
+
 pipeSpawnTime = 4
 m_pipeSpawnTime = 0
 distanceTwoPipes = 7
@@ -13,20 +14,13 @@ birdStartPos = -4
 bird = nil
 bird_rb = nil
 
-jumpForce = 5
 
 function LuaStart()
     birdPos = GetVector3D(birdStartPos, 0, 0)
-    -- bird = Spawn("Bird", birdPos)
-
-    -- bird_rb = CS.Extensions.AddRigidbody2D(bird)
-    --print(bird_rb)
+    bird = Spawn("Bird", birdPos)
 
     SpawnPipes()
 end
-
-
-
 
 function LuaUpdate()
     m_pipeSpawnTime = m_pipeSpawnTime + UE.Time.deltaTime
@@ -36,12 +30,6 @@ function LuaUpdate()
         SpawnPipes()
         m_pipeSpawnTime = 0
     end
-
-    if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
-        print("Space pressed")
-        bird_rb.velocity = UE.Vector2.up * jumpForce
-    end
-
 end
 
 
@@ -58,7 +46,6 @@ function SpawnPipes()
     pipeUp = Spawn("Pipe", pipeUpPos)
     pipeDown = Spawn("Pipe", pipeDownPos)
 end
-
 
 function Spawn(path, pos)
     go = CS.Extensions.LoadPrefab(path)

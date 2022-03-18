@@ -11,6 +11,8 @@ public delegate void UpdateDelegate();
 public class GameController : MonoBehaviour
 {
     LuaEnv luaEnv = null;
+    public TextAsset luaScript = null;
+    LuaTable scriptEnv = null;
 
     // Lua functions
     StartDelegate luaStart = null;
@@ -21,26 +23,35 @@ public class GameController : MonoBehaviour
     void Awake()
     {
         luaEnv = new LuaEnv();
-        luaEnv.DoString("require 'GameController'");
+        scriptEnv = luaEnv.NewTable();
 
-        luaStart = luaEnv.Global.Get<StartDelegate>("LuaStart");
-        luaUpdate = luaEnv.Global.Get<UpdateDelegate>("LuaUpdate");
+        LuaTable meta = luaEnv.NewTable();
+        meta.Set("__index", luaEnv.Global);
+        scriptEnv.SetMetaTable(meta);
+        meta.Dispose();
+
+        scriptEnv.Set("self", this);
+
+        luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
+        // luaEnv.DoString("require 'GameController'");
+
+        luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
+        luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
     }
-
 
     void Start()
     {
-        luaStart();
-
-        // bird.AddComponent<Rigidbody2D>();
+        if (luaStart != null)
+        {
+            luaStart();
+        }
     }
-
 
     void Update()
     {
-        // bird.GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
-        Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
-
-        luaUpdate();
+        if (luaUpdate != null)
+        {
+            luaUpdate();
+        }
     }
 }

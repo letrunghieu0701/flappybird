@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
+
+public delegate void LuaAwakeDelegate();
+public delegate void LuaStartDelegate();
+public delegate void LuaUpdateDelegate();
+
 public class BridController : MonoBehaviour
 {
     LuaEnv luaEnv = null;
-    public TextAsset luaScript;
+    public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
-    Rigidbody2D rb = null;
-
-    public delegate void LuaAwakeDelegate();
-    public delegate void LuaStartDelegate();
-    public delegate void LuaUpdateDelegate();
 
     LuaAwakeDelegate LuaAwake = null;
     LuaStartDelegate LuaStart = null;
     LuaUpdateDelegate LuaUpdate = null;
-
-
 
     void Awake()
     {
@@ -33,8 +31,6 @@ public class BridController : MonoBehaviour
         scriptEnv.Set("self", this);
 
         luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
-
-
         //luaEnv.DoString("require 'BirdController'");
 
         LuaAwake = scriptEnv.Get<LuaAwakeDelegate>("LuaAwake");
@@ -44,24 +40,17 @@ public class BridController : MonoBehaviour
 
     void Start()
     {
-        LuaStart();
-        // if (LuaStart != null)
-        // {
-        //     LuaStart();
-        // }
-        // rb = gameObject.GetComponent<Rigidbody2D>();
-
-        // gameObject.GetComponent<Rigidbody2D>();
-
-        // this.GetComponent<Rigidbody2D>();
-        gameObject.GetComponent<Rigidbody2D>();
+        if (LuaStart != null)
+        {
+            LuaStart();
+        }
     }
 
     void Update()
     {
-        // if (LuaUpdate != null)
-        // {
-        //     LuaUpdate();
-        // }
+        if (LuaUpdate != null)
+        {
+            LuaUpdate();
+        }
     }
 }
