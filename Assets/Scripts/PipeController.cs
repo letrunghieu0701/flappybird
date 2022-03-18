@@ -14,6 +14,7 @@ public class PipeController : MonoBehaviour
     UpdateDelegate luaUpdate = null;
 
 
+
     void Awake()
     {
         luaEnv = new LuaEnv();
@@ -38,7 +39,7 @@ public class PipeController : MonoBehaviour
         if (luaStart != null)
         {
             luaStart();
-        }
+        }     
     }
 
     void Update()
@@ -47,5 +48,6 @@ public class PipeController : MonoBehaviour
         {
             luaUpdate();
         }
+            // UnityEngine.Object.Destroy(gameObject);
     }
 }

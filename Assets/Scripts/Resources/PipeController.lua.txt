@@ -2,19 +2,30 @@ UE = CS.UnityEngine
 
 velocity = 3
 
+liveTime = 6
+m_liveTime = 0
+
 pipe_rb = nil
 
 function LuaStart()
+    --print("Running pipe_start")
     pipe_rb = CS.Extensions.AddRigidbody2D(self.gameObject)
     pipe_rb.gravityScale = 0.0
-    print("haha")
-    print(pipe_rb == nil)
 
     pipe_rb.velocity = UE.Vector2.left * velocity
 end
 
 function LuaUpdate()
-    print(pipe_rb == nil)
+    --print("Running pipe_update")
+    
+    m_liveTime = m_liveTime + UE.Time.deltaTime
+
+    if (m_liveTime >= liveTime) then
+        --print("Đã tới lúc Destroy pipe")
+
+        m_liveTime = 0
+        UE.Object.Destroy(self.gameObject)
+    end
 end
 
 

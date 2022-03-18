@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3558041011424278453}
   - component: {fileID: 3558041011424278452}
   - component: {fileID: 3558041011424278459}
-  - component: {fileID: 5052066411025913878}
   m_Layer: 0
   m_Name: Pipe
   m_TagString: Untagged
@@ -125,25 +124,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luaScript: {fileID: 4900000, guid: b1471b977a352df4dad7819ef66948cf, type: 3}
-  velocity: 400
---- !u!50 &5052066411025913878
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3558041011424278455}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
