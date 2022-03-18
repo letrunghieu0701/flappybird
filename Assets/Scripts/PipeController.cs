@@ -4,22 +4,15 @@ using UnityEngine;
 using XLua;
 
 
-[CSharpCallLua]
-public delegate void AwakeDelegate();
-public delegate void StartDelegate();
-public delegate void UpdateDelegate();
-
-public class GameController : MonoBehaviour
+public class PipeController : MonoBehaviour
 {
     LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
 
-    // Lua functions
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
 
-    public GameObject bird = null;
 
     void Awake()
     {
@@ -34,11 +27,11 @@ public class GameController : MonoBehaviour
         scriptEnv.Set("self", this);
 
         luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
-        // luaEnv.DoString("require 'GameController'");
 
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
     }
+
 
     void Start()
     {
@@ -54,9 +47,5 @@ public class GameController : MonoBehaviour
         {
             luaUpdate();
         }
-
-        // Rigidbody2D rb = new Rigidbody2D();
-        
-        // rb.gravityScale = 0.0f;
     }
 }

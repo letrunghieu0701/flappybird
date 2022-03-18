@@ -21,7 +21,7 @@ public static class Extensions
         go.AddComponent<Rigidbody2D>();
         Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
-
+    
         return rb;
     }
 }

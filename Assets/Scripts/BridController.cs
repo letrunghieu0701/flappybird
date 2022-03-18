@@ -4,19 +4,15 @@ using UnityEngine;
 using XLua;
 
 
-public delegate void LuaAwakeDelegate();
-public delegate void LuaStartDelegate();
-public delegate void LuaUpdateDelegate();
-
 public class BridController : MonoBehaviour
 {
     LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
 
-    LuaAwakeDelegate LuaAwake = null;
-    LuaStartDelegate LuaStart = null;
-    LuaUpdateDelegate LuaUpdate = null;
+    AwakeDelegate luaAwake = null;
+    StartDelegate luaStart = null;
+    UpdateDelegate luaUpdate = null;
 
     void Awake()
     {
@@ -33,24 +29,24 @@ public class BridController : MonoBehaviour
         luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
         //luaEnv.DoString("require 'BirdController'");
 
-        LuaAwake = scriptEnv.Get<LuaAwakeDelegate>("LuaAwake");
-        LuaStart = scriptEnv.Get<LuaStartDelegate>("LuaStart");
-        LuaUpdate = scriptEnv.Get<LuaUpdateDelegate>("LuaUpdate");
+        luaAwake = scriptEnv.Get<AwakeDelegate>("LuaAwake");
+        luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
+        luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
     }
 
     void Start()
     {
-        if (LuaStart != null)
+        if (luaStart != null)
         {
-            LuaStart();
+            luaStart();
         }
     }
 
     void Update()
     {
-        if (LuaUpdate != null)
+        if (luaUpdate != null)
         {
-            LuaUpdate();
+            luaUpdate();
         }
     }
 }

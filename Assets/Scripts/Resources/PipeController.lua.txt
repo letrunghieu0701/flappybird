@@ -1,0 +1,27 @@
+UE = CS.UnityEngine
+
+velocity = 3
+
+pipe_rb = nil
+
+function LuaStart()
+    pipe_rb = CS.Extensions.AddRigidbody2D(self.gameObject)
+    pipe_rb.gravityScale = 0.0
+    print("haha")
+    print(pipe_rb == nil)
+
+    pipe_rb.velocity = UE.Vector2.left * velocity
+end
+
+function LuaUpdate()
+    print(pipe_rb == nil)
+end
+
+
+function GetVector3D(x, y, z)
+    return UE.Vector3(x, y, z)
+end
+
+function GetVector2D(x, y)
+    return UE.Vector2(x, y)
+end

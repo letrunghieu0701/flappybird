@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3558041011424278458}
   - component: {fileID: 3558041011424278453}
   - component: {fileID: 3558041011424278452}
-  - component: {fileID: 1981683021471469101}
   - component: {fileID: 3558041011424278459}
+  - component: {fileID: 5052066411025913878}
   m_Layer: 0
   m_Name: Pipe
   m_TagString: Untagged
@@ -112,7 +112,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &1981683021471469101
+--- !u!114 &3558041011424278459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3558041011424278455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c691be2be82444b84a588b3f31f468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaScript: {fileID: 4900000, guid: b1471b977a352df4dad7819ef66948cf, type: 3}
+  velocity: 400
+--- !u!50 &5052066411025913878
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -132,17 +146,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
---- !u!114 &3558041011424278459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3558041011424278455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c691be2be82444b84a588b3f31f468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: 400
+  m_Constraints: 0

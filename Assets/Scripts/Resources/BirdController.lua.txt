@@ -20,7 +20,7 @@ end
 
 function LuaUpdate()
     if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
-        print("Space pressed")
+        --print("Space pressed")
         bird_rb.velocity = UE.Vector2.up * jumpForce
     end
 end
