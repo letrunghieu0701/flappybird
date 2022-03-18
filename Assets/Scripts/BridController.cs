@@ -5,32 +5,39 @@ using XLua;
 
 public class BridController : MonoBehaviour
 {
-    // LuaEnv luaenv = null;
-
-    [SerializeField] float velocity = 2f;
-    [SerializeField] float jumpForce = 12f;
-
+    LuaEnv luaEnv = null;
     Rigidbody2D rb = null;
 
-    // Start is called before the first frame update
-    void Start()
+    public delegate void LuaStartDelegate();
+    public delegate void LuaUpdateDelegate();
+
+    LuaStartDelegate LuaStart = null;
+    LuaUpdateDelegate LuaUpdate = null;
+
+
+    void Awake()
     {
-        // luaenv = new LuaEnv();
-        // luaenv.DoString("require 'main'");
+        luaEnv = new LuaEnv();
+        luaEnv.DoString("require 'BirdController'");
 
-        // luaenv.Global.Get<LuaFunction>("PrintNum");
-
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        LuaStart = luaEnv.Global.Get<LuaStartDelegate>("LuaStart");
+        LuaUpdate = luaEnv.Global.Get<LuaUpdateDelegate>("LuaUpdate");
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        if (LuaStart != null)
+        {
+            LuaStart();
+        }
+        // rb = gameObject.GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (LuaUpdate != null)
         {
-            Debug.Log("Space pressed => Jump");
-            // rb.AddForce(new Vector2(0, jumpForce));
-            rb.velocity = Vector2.up * new Vector2(0, jumpForce);
+            LuaUpdate();
         }
     }
 }

@@ -9,7 +9,7 @@ pipePosMax = 4.5
 pipePosMin = 0.8
 
 birdStartPos = -4
-bird = nill
+
 
 function LuaStart()
     birdPos = GetVector3D(birdStartPos, 0, 0)
@@ -18,7 +18,7 @@ function LuaStart()
 
 
     rb = CS.Extensions.GetRigidbody2D(bird)
-    print(rb == nil)
+    --print(rb == nil)
     --rb:AddForce(GetVector2D(0, 5))
 
 end

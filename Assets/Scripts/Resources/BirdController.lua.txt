@@ -1,0 +1,33 @@
+UE = CS.UnityEngine
+
+velocity = 2
+jumpForce = 12
+
+bird = nill
+rb = nil
+
+function LuaStart()
+    print("Goi start tu Lua")
+    --rb = CS.Extensions.GetRigidbody2D(bird)
+    --print(rb == nil)
+    --rb:AddForce(GetVector2D(0, 5))
+
+end
+
+
+function LuaUpdate()
+    print("Goi update tu Lua")
+end
+
+
+
+
+
+
+function GetVector3D(x, y, z)
+    return UE.Vector3(x, y, z)
+end
+
+function GetVector2D(x, y)
+    return UE.Vector2(x, y)
+end

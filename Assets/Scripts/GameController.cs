@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     {
         luaStart();
 
-        bird.AddComponent<Rigidbody2D>();
+        // bird.AddComponent<Rigidbody2D>();
     }
 
 
