@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using XLua;
 
 
@@ -11,6 +12,8 @@ public delegate void UpdateDelegate();
 
 public class GameController : MonoBehaviour
 {
+    bool gameHasEnded = false;
+
     LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
@@ -20,6 +23,7 @@ public class GameController : MonoBehaviour
     UpdateDelegate luaUpdate = null;
 
     public GameObject bird = null;
+    public float restartDelay = 1.5f;
 
     void Awake()
     {
@@ -62,6 +66,19 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
+        if (gameHasEnded == true)
+        {
+            return;
+        }
+
         Debug.Log("End Game");
+        gameHasEnded = true;
+
+        Invoke("Restart", restartDelay);
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
