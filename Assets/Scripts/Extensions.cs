@@ -19,6 +19,9 @@ public static class Extensions
     public static Rigidbody2D AddRigidbody2D(GameObject go)
     {
         go.AddComponent<Rigidbody2D>();
-        return go.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
+
+        return rb;
     }
 }

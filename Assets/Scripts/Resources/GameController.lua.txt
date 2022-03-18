@@ -1,9 +1,9 @@
 UE = CS.UnityEngine
 -- local util = require 'xlua.util'
 
-pipeSpawnTime = 2
+pipeSpawnTime = 4
 m_pipeSpawnTime = 0
-distanceTwoPipes = 4.5
+distanceTwoPipes = 7
 pipeStartPosX = 6
 pipePosMax = 4.5
 pipePosMin = 0.8
@@ -21,6 +21,8 @@ function LuaStart()
 
     bird_rb = CS.Extensions.AddRigidbody2D(bird)
     print(bird_rb)
+
+    SpawnPipes()
 end
 
 
