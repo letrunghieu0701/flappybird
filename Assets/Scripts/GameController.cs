@@ -9,6 +9,7 @@ using XLua;
 public delegate void AwakeDelegate();
 public delegate void StartDelegate();
 public delegate void UpdateDelegate();
+public delegate void EndGameDelegate();
 
 public class GameController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GameController : MonoBehaviour
     // Lua functions
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
+    EndGameDelegate luaEndGame = null;
+
 
     public GameObject bird = null;
     public float restartDelay = 1.5f;
@@ -44,6 +47,7 @@ public class GameController : MonoBehaviour
 
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
+        luaEndGame = scriptEnv.Get<EndGameDelegate>("LuaEndGame");
     }
 
     void Start()
@@ -60,24 +64,22 @@ public class GameController : MonoBehaviour
         {
             luaUpdate();
         }
-
-        // Rigidbody2D rb = new Rigidbody2D();
-        
-        // rb.gravityScale = 0.0f;
     }
 
     public void EndGame()
     {
-        if (gameHasEnded == true)
-        {
-            return;
-        }
+        luaEndGame();
 
-        Debug.Log("End Game");
-        gameHasEnded = true;
+        // if (gameHasEnded == true)
+        // {
+        //     return;
+        // }
+
+        // Debug.Log("End Game");
+        // gameHasEnded = true;
 
         // Invoke("Restart", restartDelay);
-        GameOver();
+        // GameOver();
     }
 
     void Restart()
