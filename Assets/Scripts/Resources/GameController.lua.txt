@@ -10,17 +10,17 @@ pipePosMin = 0.8
 
 birdStartPos = -4
 
+bird = nil
+bird_rb = nil
+
+jumpForce = 5
 
 function LuaStart()
     birdPos = GetVector3D(birdStartPos, 0, 0)
     bird = Spawn("Bird", birdPos)
-    --print(bird == nil)
 
-
-    rb = CS.Extensions.GetRigidbody2D(bird)
-    --print(rb == nil)
-    --rb:AddForce(GetVector2D(0, 5))
-
+    bird_rb = CS.Extensions.AddRigidbody2D(bird)
+    print(bird_rb)
 end
 
 
@@ -33,6 +33,11 @@ function LuaUpdate()
         --UE.Debug.Log("Đã tới lúc spawn pipe")
         SpawnPipes()
         m_pipeSpawnTime = 0
+    end
+
+    if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
+        print("Space pressed")
+        bird_rb.velocity = UE.Vector2.up * jumpForce
     end
 
 end

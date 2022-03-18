@@ -125,7 +125,7 @@ namespace XLua.CSObjectWrap
                     UnityEngine.GameObject _go = (UnityEngine.GameObject)translator.GetObject(L, 1, typeof(UnityEngine.GameObject));
                     
                         var gen_ret = Extensions.AddRigidbody2D( _go );
-                        LuaAPI.lua_pushboolean(L, gen_ret);
+                        translator.Push(L, gen_ret);
                     
                     
                     

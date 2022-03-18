@@ -8,15 +8,20 @@ rb = nil
 
 function LuaStart()
     print("Goi start tu Lua")
-    --rb = CS.Extensions.GetRigidbody2D(bird)
-    --print(rb == nil)
-    --rb:AddForce(GetVector2D(0, 5))
+
+    bird = UE.BirdController.gameObject
+    print(bird == nill)
+    rb = CS.Extensions.GetRigidbody2D(bird)
+    print(rb == nil)
+    rb:AddForce(GetVector2D(0, 5))
 
 end
 
 
 function LuaUpdate()
-    print("Goi update tu Lua")
+    if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
+        print("Space pressed")
+    end
 end
 
 

@@ -26,18 +26,23 @@ public class BridController : MonoBehaviour
 
     void Start()
     {
-        if (LuaStart != null)
-        {
-            LuaStart();
-        }
+        // if (LuaStart != null)
+        // {
+        //     LuaStart();
+        // }
         // rb = gameObject.GetComponent<Rigidbody2D>();
+
+        // gameObject.GetComponent<Rigidbody2D>();
+
+        // this.GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
     {
-        if (LuaUpdate != null)
-        {
-            LuaUpdate();
-        }
+        // if (LuaUpdate != null)
+        // {
+        //     LuaUpdate();
+        // }
     }
 }

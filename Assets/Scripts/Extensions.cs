@@ -16,10 +16,9 @@ public static class Extensions
         return go.GetComponent<Rigidbody2D>();
     }
 
-    public static bool AddRigidbody2D(GameObject go)
+    public static Rigidbody2D AddRigidbody2D(GameObject go)
     {
         go.AddComponent<Rigidbody2D>();
-        Rigidbody2D rb = go.GetComponent<Rigidbody2D>();
-        return (rb != null);
+        return go.GetComponent<Rigidbody2D>();
     }
 }
