@@ -59,4 +59,9 @@ public class GameController : MonoBehaviour
         
         // rb.gravityScale = 0.0f;
     }
+
+    public void EndGame()
+    {
+        Debug.Log("End Game");
+    }
 }

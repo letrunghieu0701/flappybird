@@ -711,9 +711,9 @@ namespace XLua
 		public override Delegate GetDelegateByType(Type type)
 		{
 		
-		    if (type == typeof(StartDelegate))
+		    if (type == typeof(AwakeDelegate))
 			{
-			    return new StartDelegate(__Gen_Delegate_Imp0);
+			    return new AwakeDelegate(__Gen_Delegate_Imp0);
 			}
 		
 		    if (type == typeof(System.Action))

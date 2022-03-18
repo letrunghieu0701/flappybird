@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
+[CSharpCallLua]
+public delegate void OnCollisionEnter2DDelegate(Collision2D other);
 
 public class BridController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class BridController : MonoBehaviour
     AwakeDelegate luaAwake = null;
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
+
+    OnCollisionEnter2DDelegate luaOnCollisionEnter2D = null;
 
     void Awake()
     {
@@ -32,6 +36,8 @@ public class BridController : MonoBehaviour
         luaAwake = scriptEnv.Get<AwakeDelegate>("LuaAwake");
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
+
+        luaOnCollisionEnter2D = scriptEnv.Get<OnCollisionEnter2DDelegate>("LuaOnCollisionEnter2D");
     }
 
     void Start()
@@ -48,5 +54,17 @@ public class BridController : MonoBehaviour
         {
             luaUpdate();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Pipe") == true)
+        {
+            luaOnCollisionEnter2D(other);
+            // Debug.Log("Bird va chạm với Pipe");
+            
+
+            // UnityEngine.Object.FindObjectOfType<GameController>().EndGame();
+        }    
     }
 }

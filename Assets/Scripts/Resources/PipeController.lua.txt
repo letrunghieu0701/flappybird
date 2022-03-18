@@ -1,6 +1,6 @@
 UE = CS.UnityEngine
 
-velocity = 3
+velocity = 5
 
 liveTime = 6
 m_liveTime = 0
