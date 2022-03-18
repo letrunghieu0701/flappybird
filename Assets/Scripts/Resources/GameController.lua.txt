@@ -17,10 +17,10 @@ jumpForce = 5
 
 function LuaStart()
     birdPos = GetVector3D(birdStartPos, 0, 0)
-    bird = Spawn("Bird", birdPos)
+    -- bird = Spawn("Bird", birdPos)
 
-    bird_rb = CS.Extensions.AddRigidbody2D(bird)
-    print(bird_rb)
+    -- bird_rb = CS.Extensions.AddRigidbody2D(bird)
+    --print(bird_rb)
 
     SpawnPipes()
 end

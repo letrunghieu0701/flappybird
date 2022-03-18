@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         // bird.GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
-        // bird.GetComponent<Rigidbody2D>().AddForce();
+        Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
 
         luaUpdate();
     }

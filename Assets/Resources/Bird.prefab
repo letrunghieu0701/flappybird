@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dc867f61431944fb0caead0848e8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  luaScript: {fileID: 4900000, guid: 5687f3aff7d5fe94ead1340545b6adf6, type: 3}
