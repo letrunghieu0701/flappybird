@@ -240,6 +240,7 @@ MonoBehaviour:
   pipeSpawnTime: 5
   distanceTwoPipes: 7
   startPosX: 5
+  bird: {fileID: 1080458233}
 --- !u!4 &549233646
 Transform:
   m_ObjectHideFlags: 0
@@ -254,6 +255,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1080458233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2406476990307177608, guid: 168248e60c6bef346b8fb5a57aa707d4, type: 3}
+  m_PrefabInstance: {fileID: 2406476990515572713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &211746643347207601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836939136924795171, guid: 5170399002e4a9240ac28c7faa36ec03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.45
+      value: -5.91
       objectReference: {fileID: 0}
     - target: {fileID: 836939136924795171, guid: 5170399002e4a9240ac28c7faa36ec03, type: 3}
       propertyPath: m_LocalPosition.y
@@ -309,6 +315,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pipe
       objectReference: {fileID: 0}
+    - target: {fileID: 5226768513917137490, guid: 5170399002e4a9240ac28c7faa36ec03, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5170399002e4a9240ac28c7faa36ec03, type: 3}
 --- !u!1001 &2406476990515572713
@@ -328,7 +338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2406476990307177610, guid: 168248e60c6bef346b8fb5a57aa707d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.18
+      value: -4.17
       objectReference: {fileID: 0}
     - target: {fileID: 2406476990307177610, guid: 168248e60c6bef346b8fb5a57aa707d4, type: 3}
       propertyPath: m_LocalPosition.y
