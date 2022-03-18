@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
 
     public GameObject bird = null;
     public float restartDelay = 1.5f;
+    public GaneOverScreen gameOverScreen;
+    int points = 7;
 
     void Awake()
     {
@@ -74,11 +76,17 @@ public class GameController : MonoBehaviour
         Debug.Log("End Game");
         gameHasEnded = true;
 
-        Invoke("Restart", restartDelay);
+        // Invoke("Restart", restartDelay);
+        GameOver();
     }
 
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void GameOver()
+    {
+        gameOverScreen.Setup(points);
     }
 }
