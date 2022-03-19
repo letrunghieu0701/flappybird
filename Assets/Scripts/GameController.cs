@@ -9,7 +9,7 @@ using XLua;
 public delegate void AwakeDelegate();
 public delegate void StartDelegate();
 public delegate void UpdateDelegate();
-public delegate void EndGameDelegate();
+public delegate void RestartGameDelegate();
 
 public class GameController : MonoBehaviour
 {
@@ -22,12 +22,11 @@ public class GameController : MonoBehaviour
     // Lua functions
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
-    EndGameDelegate luaEndGame = null;
+    RestartGameDelegate luaRestartGame = null;
 
 
     public GameObject bird = null;
     public float restartDelay = 1.5f;
-    public GaneOverScreen gameOverScreen;
     int points = 7;
 
     void Awake()
@@ -47,7 +46,8 @@ public class GameController : MonoBehaviour
 
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
-        luaEndGame = scriptEnv.Get<EndGameDelegate>("LuaEndGame");
+
+        luaRestartGame = scriptEnv.Get<RestartGameDelegate>("LuaRestartGame");
     }
 
     void Start()
@@ -66,11 +66,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void EndGame()
+    public void Restart()
     {
-        if (luaEndGame != null)
+        if (luaRestartGame != null)
         {
-            luaEndGame();
+            luaRestartGame();
         }
 
         // if (gameHasEnded == true)
@@ -85,13 +85,13 @@ public class GameController : MonoBehaviour
         // GameOver();
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    // public void Restart()
+    // {
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // }
 
-    void GameOver()
+    public void QuitGame()
     {
-        gameOverScreen.Setup(points);
+        Application.Quit();
     }
 }

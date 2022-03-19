@@ -14,7 +14,7 @@ birdStartPos = -4
 bird = nil
 bird_rb = nil
 
-gameHasEnded = false
+isPlayerLose = false
 
 
 function LuaStart()
@@ -35,13 +35,14 @@ function LuaUpdate()
 end
 
 
-function LuaEndGame()
-    if (gameHasEnded == true) then
+
+function LuaRestartGame()
+    if (isPlayerLose == true) then
         return
     end
 
-    print("End Game, gọi từ Lua")
-    gameHasEnded = true
+    print("Restart Game, gọi từ Lua")
+    isPlayerLose = true
     Restart()
 end
 

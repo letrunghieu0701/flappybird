@@ -32,8 +32,8 @@ function LuaOnCollisionEnter2D(other)
     if (other.gameObject:CompareTag("Pipe") == true) then
         --print("Bird va chạm với Pipe, gọi từ Lua")
 
-        UE.Object.FindObjectOfType(typeof(CS.GameController)):EndGame()
-        --gameController = UE.Object.FindObjectOfType(typeof(CS.GameController)):EndGame()
+        UE.Object.FindObjectOfType(typeof(CS.GameController)):Restart()
+        --gameController = UE.Object.FindObjectOfType(typeof(CS.GameController)):Restart()
         --print(gameController == nil)
     end
 end

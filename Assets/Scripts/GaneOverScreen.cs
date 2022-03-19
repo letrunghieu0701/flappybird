@@ -12,5 +12,4 @@ public class GaneOverScreen : MonoBehaviour
         gameObject.SetActive(true);
         pointsText.text = score.ToString() + " POINTS";
     }
-  
 }
