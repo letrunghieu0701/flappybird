@@ -40,7 +40,7 @@ function LuaShowGameOverPanel()
         return
     end
 
-    print("Show GameOverPanel, gọi từ Lua")
+    --print("Show GameOverPanel, gọi từ Lua")
     isPlayerLose = true
 
     gameOverPanel:SetActive(true)
@@ -50,11 +50,15 @@ function LuaShowGameOverPanel()
 end
 
 function LuaRestartGame()
-    print("Restart Game, gọi từ Lua")
-    
+    --print("Restart Game, gọi từ Lua")
+
     -- Continue the game
     UE.Time.timeScale = 1
     UE.SceneManagement.SceneManager.LoadScene(UE.SceneManagement.SceneManager.GetActiveScene().name)
+end
+
+function LuaQuitGame()
+    UE.Application.Quit()
 end
 
 

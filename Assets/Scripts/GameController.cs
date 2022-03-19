@@ -83,8 +83,6 @@ public class GameController : MonoBehaviour
         {
             luaShowGameOverPanel();
         }
-
-        // Time.timeScale = 0;
     }
 
     public void Restart()
@@ -110,6 +108,9 @@ public class GameController : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        if (luaQuitGame != null)
+        {
+            luaQuitGame();
+        }
     }
 }
