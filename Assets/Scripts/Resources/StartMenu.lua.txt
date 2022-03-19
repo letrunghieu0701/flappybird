@@ -1,0 +1,7 @@
+UE = CS.UnityEngine
+
+gameSceneIndex = 1
+
+function LuaStartGame()
+    UE.SceneManagement.SceneManager.LoadScene(gameSceneIndex)
+end

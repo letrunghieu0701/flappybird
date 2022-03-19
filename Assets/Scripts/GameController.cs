@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour
         // GameOver();
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
