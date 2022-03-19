@@ -5,6 +5,7 @@ using XLua;
 
 [CSharpCallLua]
 public delegate void OnCollisionEnter2DDelegate(Collision2D other);
+public delegate void OnTriggerEnter2DDelegate(Collider2D other);
 
 public class BridController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class BridController : MonoBehaviour
     UpdateDelegate luaUpdate = null;
 
     OnCollisionEnter2DDelegate luaOnCollisionEnter2D = null;
+    OnTriggerEnter2DDelegate luaOnTriggerEnter2D = null;
 
     void Awake()
     {
@@ -38,6 +40,7 @@ public class BridController : MonoBehaviour
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
 
         luaOnCollisionEnter2D = scriptEnv.Get<OnCollisionEnter2DDelegate>("LuaOnCollisionEnter2D");
+        luaOnTriggerEnter2D = scriptEnv.Get<OnTriggerEnter2DDelegate>("LuaOnTriggerEnter2D");
     }
 
     void Start()
@@ -56,11 +59,19 @@ public class BridController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (luaOnCollisionEnter2D != null)
         {
             luaOnCollisionEnter2D(other);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (luaOnTriggerEnter2D != null)
+        {
+            luaOnTriggerEnter2D(other);
         }
     }
 }
