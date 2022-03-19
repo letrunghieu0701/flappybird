@@ -29,7 +29,7 @@ end
 function LuaOnCollisionEnter2D(other)
     -- print("Đang gọi hàm va chạm bên Lua")
 
-    if (other.gameObject:CompareTag("Pipe") == true) or (other.gameObject:CompareTag("DeathZone") == true) then
+    if (other.gameObject:CompareTag("Pipe") == true) then
         --print("Bird va chạm với Pipe, gọi từ Lua")
 
         UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
@@ -39,7 +39,7 @@ end
 
 function LuaOnTriggerEnter2D(other)
     if (other.gameObject:CompareTag("DeathZone") == true) then
-        print("Bird va chạm với Death Zone, gọi từ Lua")
+        --print("Bird va chạm với Death Zone, gọi từ Lua")
         UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
     end
 end

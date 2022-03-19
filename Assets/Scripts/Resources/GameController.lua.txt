@@ -17,11 +17,18 @@ bird_rb = nil
 isPlayerLose = false
 
 
-function LuaStart()
+function LuaAwake()
     birdPos = GetVector3D(birdStartPos, 0, 0)
     bird = Spawn("Bird", birdPos)
 
     SpawnPipes()
+end
+
+function LuaStart()
+    --birdPos = GetVector3D(birdStartPos, 0, 0)
+    --bird = Spawn("Bird", birdPos)
+
+    --SpawnPipes()
 end
 
 function LuaUpdate()
@@ -67,9 +74,12 @@ end
 function SpawnPipes()
     pipeUpPos = GetVector3D(pipeStartPosX, UE.Random.Range(pipePosMin, pipePosMax), 0)
     pipeDownPos = pipeUpPos - GetVector3D(0, distanceTwoPipes, 0)
+    -- Cộng thêm 1 ở x là để cho cái scoreLine nằm bên phải mấy cái pipe, nghĩa là phải nhảy qua khỏi pipe thì mới được cộng điểm
+    scoreLinePos = pipeUpPos - GetVector3D(-1, distanceTwoPipes/2, 0)
 
     pipeUp = Spawn("Pipe", pipeUpPos)
     pipeDown = Spawn("Pipe", pipeDownPos)
+    scoreLine = Spawn("ScoreLine", scoreLinePos)
 end
 
 function Spawn(path, pos)

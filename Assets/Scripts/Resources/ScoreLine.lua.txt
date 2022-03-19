@@ -1,0 +1,21 @@
+UE = CS.UnityEngine
+
+velocity = 5
+
+function LuaStart()
+    scoreLine_rb2D = CS.Extensions.AddRigidbody2D(self.gameObject)
+    scoreLine_rb2D.gravityScale = 0.0
+
+    scoreLine_rb2D.velocity = UE.Vector2.left * velocity
+end
+
+
+function LuaOnTriggerEnter2D(other)
+    if (other.gameObject:CompareTag("Player") == true) then
+        UE.Object.FindObjectOfType(typeof(CS.BridController)):IncreaseScore()
+    end
+end
+
+function GetVector2D(x, y)
+    return UE.Vector2(x, y)
+end

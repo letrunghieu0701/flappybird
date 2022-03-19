@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 41ee7d741b6f91d4388ec4442e884a86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c547b7b2ab0ef8347bda3e226ea22f2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,4 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19dc867f61431944fb0caead0848e8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   luaScript: {fileID: 4900000, guid: 5687f3aff7d5fe94ead1340545b6adf6, type: 3}

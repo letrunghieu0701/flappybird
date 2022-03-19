@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     LuaTable scriptEnv = null;
 
     // Lua functions
+    AwakeDelegate luaAwake = null;
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
     RestartGameDelegate luaRestartGame = null;
@@ -51,6 +52,7 @@ public class GameController : MonoBehaviour
         luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
         // luaEnv.DoString("require 'GameController'");
 
+        luaAwake = scriptEnv.Get<AwakeDelegate>("LuaAwake");
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
 
@@ -58,6 +60,7 @@ public class GameController : MonoBehaviour
         luaRestartGame = scriptEnv.Get<RestartGameDelegate>("LuaRestartGame");
         luaQuitGame = scriptEnv.Get<QuitGameDelegate>("LuaQuitGame");
 
+        luaAwake();
         gameOverPanel.SetActive(false);
     }
 

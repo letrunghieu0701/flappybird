@@ -9,6 +9,7 @@ public delegate void OnTriggerEnter2DDelegate(Collider2D other);
 
 public class BridController : MonoBehaviour
 {
+    public int score = 0;
     LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
@@ -73,5 +74,10 @@ public class BridController : MonoBehaviour
         {
             luaOnTriggerEnter2D(other);
         }
+    }
+
+    public void IncreaseScore()
+    {
+        score++;
     }
 }

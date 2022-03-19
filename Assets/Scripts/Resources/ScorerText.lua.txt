@@ -1,0 +1,18 @@
+UE = CS.UnityEngine
+
+scoreText = nil
+bird = nil
+
+function LuaStart()
+    scoreText = self.gameObject:GetComponent(typeof(UE.UI.Text))
+    print(scoreText == nil)
+
+    bird = UE.Object.FindObjectOfType(typeof(CS.BridController))
+    print(bird == nil)
+end
+
+
+function LuaUpdate()
+    scoreText.text = "Score: " .. bird.score    --Không cần ToString(), Lua tự đổi int sang string
+    --UE.Object.FindObjectOfType(typeof(CS.BridController)).score:ToString()
+end
