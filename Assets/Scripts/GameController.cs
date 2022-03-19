@@ -68,7 +68,10 @@ public class GameController : MonoBehaviour
 
     public void EndGame()
     {
-        luaEndGame();
+        if (luaEndGame != null)
+        {
+            luaEndGame();
+        }
 
         // if (gameHasEnded == true)
         // {

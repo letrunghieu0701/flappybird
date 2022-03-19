@@ -58,13 +58,9 @@ public class BridController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Pipe") == true)
+        if (luaOnCollisionEnter2D != null)
         {
             luaOnCollisionEnter2D(other);
-            // Debug.Log("Bird va chạm với Pipe");
-            
-
-            // UnityEngine.Object.FindObjectOfType<GameController>().EndGame();
-        }    
+        }
     }
 }
