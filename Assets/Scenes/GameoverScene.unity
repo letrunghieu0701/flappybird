@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 199662619}
   - component: {fileID: 199662618}
   - component: {fileID: 199662617}
-  - component: {fileID: 199662616}
   m_Layer: 5
   m_Name: RestartBtn
   m_TagString: Untagged
@@ -242,22 +241,6 @@ RectTransform:
   m_AnchoredPosition: {x: 15.995346, y: -65}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &199662616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199662614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ab3cc1989921f4bbc20228b92c606d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  luaScript: {fileID: 4900000, guid: 276d83e7d80f4ba46b4186d90e88d369, type: 3}
-  bird: {fileID: 0}
-  restartDelay: 1.5
-  gameOverScreen: {fileID: 0}
 --- !u!114 &199662617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +335,6 @@ GameObject:
   - component: {fileID: 241068313}
   - component: {fileID: 241068312}
   - component: {fileID: 241068311}
-  - component: {fileID: 241068310}
   m_Layer: 5
   m_Name: QuitBtn
   m_TagString: Untagged
@@ -380,22 +362,6 @@ RectTransform:
   m_AnchoredPosition: {x: 15.995346, y: -185}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &241068310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241068308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50ab3cc1989921f4bbc20228b92c606d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  luaScript: {fileID: 4900000, guid: 276d83e7d80f4ba46b4186d90e88d369, type: 3}
-  bird: {fileID: 0}
-  restartDelay: 1.5
-  gameOverScreen: {fileID: 0}
 --- !u!114 &241068311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -640,7 +606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1170878914
 MonoBehaviour:
   m_ObjectHideFlags: 0

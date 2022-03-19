@@ -9,12 +9,12 @@ using XLua;
 public delegate void AwakeDelegate();
 public delegate void StartDelegate();
 public delegate void UpdateDelegate();
+public delegate void ShowGameOverPanelDelegate();
 public delegate void RestartGameDelegate();
+public delegate void QuitGameDelegate();
 
 public class GameController : MonoBehaviour
 {
-    bool gameHasEnded = false;
-
     LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
     LuaTable scriptEnv = null;
@@ -23,11 +23,17 @@ public class GameController : MonoBehaviour
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
     RestartGameDelegate luaRestartGame = null;
+    ShowGameOverPanelDelegate luaShowGameOverPanel = null;
+    QuitGameDelegate luaQuitGame = null;
 
 
     public GameObject bird = null;
     public float restartDelay = 1.5f;
     int points = 7;
+
+    bool gameHasEnded = false;
+
+    public GameObject gameOverPanel = null;
 
     void Awake()
     {
@@ -40,6 +46,7 @@ public class GameController : MonoBehaviour
         meta.Dispose();
 
         scriptEnv.Set("self", this);
+        scriptEnv.Set("gameOverPanel", gameOverPanel);
 
         luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
         // luaEnv.DoString("require 'GameController'");
@@ -47,7 +54,11 @@ public class GameController : MonoBehaviour
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
 
+        luaShowGameOverPanel = scriptEnv.Get<ShowGameOverPanelDelegate>("LuaShowGameOverPanel");
         luaRestartGame = scriptEnv.Get<RestartGameDelegate>("LuaRestartGame");
+        luaQuitGame = scriptEnv.Get<QuitGameDelegate>("LuaQuitGame");
+
+        gameOverPanel.SetActive(false);
     }
 
     void Start()
@@ -66,12 +77,24 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ShowGameOverPanel()
+    {
+        if (luaShowGameOverPanel != null)
+        {
+            luaShowGameOverPanel();
+        }
+
+        // Time.timeScale = 0;
+    }
+
     public void Restart()
     {
         if (luaRestartGame != null)
         {
             luaRestartGame();
         }
+
+        Time.timeScale = 1;
 
         // if (gameHasEnded == true)
         // {
@@ -84,11 +107,6 @@ public class GameController : MonoBehaviour
         // Invoke("Restart", restartDelay);
         // GameOver();
     }
-
-    // public void Restart()
-    // {
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    // }
 
     public void QuitGame()
     {

@@ -1,0 +1,6 @@
+UE = CS.UnityEngine
+
+function LuaGameOver()
+    local gameOverSceneIndex = 2
+    UE.SceneManagement.SceneManager.LoadScene(gameOverSceneIndex)
+end

@@ -35,19 +35,25 @@ function LuaUpdate()
 end
 
 
-
-function LuaRestartGame()
+function LuaShowGameOverPanel()
     if (isPlayerLose == true) then
         return
     end
 
-    print("Restart Game, gọi từ Lua")
+    print("Show GameOverPanel, gọi từ Lua")
     isPlayerLose = true
-    Restart()
+
+    gameOverPanel:SetActive(true)
+
+    -- Stop the game
+    UE.Time.timeScale = 0
 end
 
-function Restart()
+function LuaRestartGame()
     print("Restart Game, gọi từ Lua")
+    
+    -- Continue the game
+    UE.Time.timeScale = 1
     UE.SceneManagement.SceneManager.LoadScene(UE.SceneManagement.SceneManager.GetActiveScene().name)
 end
 
