@@ -123,11 +123,6 @@ namespace XLua
 			    return new AwakeDelegate(__Gen_Delegate_Imp1);
 			}
 		
-		    if (type == typeof(GameOverDelegate))
-			{
-			    return new GameOverDelegate(__Gen_Delegate_Imp1);
-			}
-		
 		    if (type == typeof(StartGameDelegate))
 			{
 			    return new StartGameDelegate(__Gen_Delegate_Imp1);
