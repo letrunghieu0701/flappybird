@@ -62,6 +62,9 @@ public class BridController : MonoBehaviour
         {
             luaOnTriggerEnter2D(other);
         }
+
+        // gameObject.GetComponent<AudioSource>().Play();
+        FindObjectOfType<AudioManager>().Play("coin");
     }
 
     public void IncreaseScore()

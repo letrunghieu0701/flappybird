@@ -45,10 +45,6 @@ public class XLuaEnvironment : MonoBehaviour
         scriptEnv.SetMetaTable(meta);
         meta.Dispose();
 
-        scriptEnv.Set("self", this);
-
         return scriptEnv;
     }
-
-    
 }
