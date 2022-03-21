@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
-public class XLuaEnvironment : MonoBehaviour
+public class XLuaEnvironment
 {
     private static XLuaEnvironment instance = null;
     public static LuaEnv luaEnv = new LuaEnv();

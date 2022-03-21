@@ -13,6 +13,7 @@ end
 function LuaOnTriggerEnter2D(other)
     if (other.gameObject:CompareTag("Player") == true) then
         UE.Object.FindObjectOfType(typeof(CS.BridController)):IncreaseScore()
+        UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("PassPipes")
     end
 end
 
