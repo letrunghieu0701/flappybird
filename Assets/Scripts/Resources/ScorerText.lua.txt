@@ -5,10 +5,10 @@ bird = nil
 
 function LuaStart()
     scoreText = self.gameObject:GetComponent(typeof(UE.UI.Text))
-    print(scoreText == nil)
+    --print(scoreText == nil)
 
     bird = UE.Object.FindObjectOfType(typeof(CS.BridController))
-    print(bird == nil)
+    --print(bird == nil)
 end
 
 

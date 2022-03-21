@@ -15,9 +15,8 @@ public delegate void QuitGameDelegate();
 
 public class GameController : MonoBehaviour
 {
-    LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
-    LuaTable scriptEnv = null;
+    // LuaTable scriptEnv = null;
 
     // Lua functions
     AwakeDelegate luaAwake = null;
@@ -28,29 +27,14 @@ public class GameController : MonoBehaviour
     QuitGameDelegate luaQuitGame = null;
 
 
-    public GameObject bird = null;
-    public float restartDelay = 1.5f;
-    int points = 7;
-
-    bool gameHasEnded = false;
-
     public GameObject gameOverPanel = null;
 
     void Awake()
     {
-        luaEnv = new LuaEnv();
-        scriptEnv = luaEnv.NewTable();
-
-        LuaTable meta = luaEnv.NewTable();
-        meta.Set("__index", luaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-
-        scriptEnv.Set("self", this);
+        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
         scriptEnv.Set("gameOverPanel", gameOverPanel);
 
-        luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
-        // luaEnv.DoString("require 'GameController'");
+        XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 
         luaAwake = scriptEnv.Get<AwakeDelegate>("LuaAwake");
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
