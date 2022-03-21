@@ -6,28 +6,18 @@ using XLua;
 
 public class PipeController : MonoBehaviour
 {
-    LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
-    LuaTable scriptEnv = null;
 
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
 
 
-
     void Awake()
     {
-        luaEnv = new LuaEnv();
-        scriptEnv = luaEnv.NewTable();
-
-        LuaTable meta = luaEnv.NewTable();
-        meta.Set("__index", luaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-
+        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
         scriptEnv.Set("self", this);
 
-        luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
+        XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
@@ -48,6 +38,5 @@ public class PipeController : MonoBehaviour
         {
             luaUpdate();
         }
-            // UnityEngine.Object.Destroy(gameObject);
     }
 }
