@@ -16,7 +16,6 @@ public delegate void QuitGameDelegate();
 public class GameController : MonoBehaviour
 {
     public TextAsset luaScript = null;
-    // LuaTable scriptEnv = null;
 
     // Lua functions
     AwakeDelegate luaAwake = null;

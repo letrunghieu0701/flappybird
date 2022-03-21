@@ -10,11 +10,8 @@ public delegate void OnTriggerEnter2DDelegate(Collider2D other);
 public class BridController : MonoBehaviour
 {
     public int score = 0;
-    LuaEnv luaEnv = null;
     public TextAsset luaScript = null;
-    LuaTable scriptEnv = null;
 
-    AwakeDelegate luaAwake = null;
     StartDelegate luaStart = null;
     UpdateDelegate luaUpdate = null;
 
@@ -23,20 +20,11 @@ public class BridController : MonoBehaviour
 
     void Awake()
     {
-        luaEnv = new LuaEnv();
-        scriptEnv = luaEnv.NewTable();
-
-        LuaTable meta = luaEnv.NewTable();
-        meta.Set("__index", luaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-        
+        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
         scriptEnv.Set("self", this);
 
-        luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
-        //luaEnv.DoString("require 'BirdController'");
+        XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 
-        luaAwake = scriptEnv.Get<AwakeDelegate>("LuaAwake");
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
 

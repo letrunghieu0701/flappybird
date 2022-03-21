@@ -6,9 +6,7 @@ jumpForce = 5
 bird = nill
 bird_rb = nil
 
-function Awake()
 
-end
 
 function LuaStart()
     --print("Goi start tu Lua")
