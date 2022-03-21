@@ -8,8 +8,6 @@ using XLua;
 public delegate void StartGameDelegate();
 public class StartMenu : MonoBehaviour
 {
-    LuaEnv luaEnv = null;
-    LuaTable scriptEnv = null;
     public TextAsset luaScript = null;
 
     StartGameDelegate luaStartGame = null;
@@ -18,23 +16,15 @@ public class StartMenu : MonoBehaviour
 
     void Awake()
     {
-        luaEnv = new LuaEnv();
-        scriptEnv = luaEnv.NewTable();
-
-        LuaTable meta = luaEnv.NewTable();
-        meta.Set("__index", luaEnv.Global);
-        scriptEnv.SetMetaTable(meta);
-        meta.Dispose();
-
+        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
         scriptEnv.Set("self", this);
 
-        luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
+        XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 
         luaStartGame = scriptEnv.Get<StartGameDelegate>("LuaStartGame");
     }
     public void StartGame()
     {
-        // SceneManager.LoadScene(gameSceneIndex);
         if (luaStartGame != null)
         {
             luaStartGame();
