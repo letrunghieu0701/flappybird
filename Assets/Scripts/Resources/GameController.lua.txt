@@ -100,7 +100,6 @@ end
 function SpawnPipes()
     -- Vị trí cho 2 pipe và score line
     local pipeUpPos = pipeSpawnPos + GetVector3D(0, distancePipeUpAndDown/2 + pipeScaleY/2, 0)
-    print(pipeUpPos)
     local pipeDownPos = pipeSpawnPos - GetVector3D(0, distancePipeUpAndDown/2 + pipeScaleY/2, 0)
     -- Cộng thêm 1 ở x là để cho cái scoreLine nằm bên phải mấy cái pipe, nghĩa là phải nhảy qua khỏi pipe thì mới được cộng điểm
     local scoreLinePos = pipeSpawnPos

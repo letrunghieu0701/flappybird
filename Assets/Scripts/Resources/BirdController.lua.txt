@@ -7,7 +7,6 @@ bird = nill
 bird_rb = nil
 
 
-
 function LuaStart()
     --print("Goi start tu Lua")
     
@@ -26,21 +25,25 @@ end
 
 
 function LuaOnCollisionEnter2D(other)
-    -- print("Đang gọi hàm va chạm bên Lua")
-
     if (other.gameObject:CompareTag("Pipe") == true) then
         --print("Bird va chạm với Pipe, gọi từ Lua")
-
-        UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
-        --gameController = UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
+        HandleGameOver()
     end
 end
 
 function LuaOnTriggerEnter2D(other)
     if (other.gameObject:CompareTag("DeathZone") == true) then
         --print("Bird va chạm với Death Zone, gọi từ Lua")
-        UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
+        HandleGameOver()
     end
+end
+
+function HandleGameOver()
+    audioManager = UE.Object.FindObjectOfType(typeof(CS.AudioManager))
+    audioManager:Play("HitObject")
+    audioManager:Play("Lose")
+
+    UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
 end
 
 

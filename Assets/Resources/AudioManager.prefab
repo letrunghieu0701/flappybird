@@ -52,7 +52,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Theme
     clip: {fileID: 8300000, guid: 99c8ac353d64dc743a63f819488a8875, type: 3}
-    volume: 0.5
+    volume: 0.674
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -61,4 +61,16 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 1
+    source: {fileID: 0}
+  - name: HitObject
+    clip: {fileID: 8300000, guid: f9c1fcc0d3dfa204089993ffb4d4f4e9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Swing
+    clip: {fileID: 8300000, guid: 611d48a586fa39a47b7440d100672ff9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
     source: {fileID: 0}
