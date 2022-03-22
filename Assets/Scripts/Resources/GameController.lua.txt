@@ -4,16 +4,24 @@ UE = CS.UnityEngine
 require('PipeController')
 
 
-distanceTwoPipes = 7
-pipeSpawnTime = distanceTwoPipes / pipe_velocity
+distancePipeUpAndDown = 7
+distanceBetweenPipes = 5
+pipeSpawnTime = distanceBetweenPipes / pipe_velocity
 m_pipeSpawnTime = 0
 
-local aspectRatio = UE.Screen.width / UE.Screen.height
+local aspectRatio = UE.Camera.main.aspect
 local halfScreenWidthInUnits = UE.Camera.main.orthographicSize * aspectRatio
 local spawnDistanceFromCameraBoundary = 1
 pipeStartPosX = UE.Camera.main.transform.position.x + halfScreenWidthInUnits + spawnDistanceFromCameraBoundary
-pipePosMax = 4.5
+
+cameraSize = UE.Camera.main.orthographicSize
+pipePosMax = UE.Camera.main.orthographicSize
 pipePosMin = 0.8
+
+pipeGap = 3.5
+halfPipeGap = pipeGap / 2
+
+pipeSpawnPos = GetVector3D(pipeStartPosX, cameraSize/2, 0)
 
 birdStartPos = -4
 
@@ -78,14 +86,21 @@ end
 
 
 function SpawnPipes()
-    pipeUpPos = GetVector3D(pipeStartPosX, UE.Random.Range(pipePosMin, pipePosMax), 0)
-    pipeDownPos = pipeUpPos - GetVector3D(0, distanceTwoPipes, 0)
+    -- Vị trí cho 2 pipe và score line
+    local pipeUpPos = pipeSpawnPos
+    local pipeDownPos = pipeUpPos - GetVector3D(0, distancePipeUpAndDown, 0)
     -- Cộng thêm 1 ở x là để cho cái scoreLine nằm bên phải mấy cái pipe, nghĩa là phải nhảy qua khỏi pipe thì mới được cộng điểm
-    scoreLinePos = pipeUpPos - GetVector3D(-1, distanceTwoPipes/2, 0)
+    local scoreLinePos = pipeUpPos - GetVector3D(-1, distancePipeUpAndDown/2, 0)
 
-    pipeUp = Spawn("Pipe", pipeUpPos)
-    pipeDown = Spawn("Pipe", pipeDownPos)
-    scoreLine = Spawn("ScoreLine", scoreLinePos)
+    -- Vị trí spawn mới cho 2 pipe tiếp theo
+    local nextSpawnPos = pipeSpawnPos.y + UE.Random.Range(-halfPipeGap, halfPipeGap)
+    adjustNextSpawnPos = UE.Mathf.Clamp(nextSpawnPos, -cameraSize + distancePipeUpAndDown, cameraSize)
+    pipeSpawnPos = GetVector3D(pipeStartPosX, adjustNextSpawnPos, 0)
+
+    -- Tạo 2 pipes và score line
+    Spawn("Pipe", pipeUpPos)
+    Spawn("Pipe", pipeDownPos)
+    Spawn("ScoreLine", scoreLinePos)
 end
 
 function Spawn(path, pos)

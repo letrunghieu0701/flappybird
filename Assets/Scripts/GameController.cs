@@ -53,9 +53,6 @@ public class GameController : MonoBehaviour
         {
             luaStart();
         }
-        // Debug.Log(UnityEngine.Screen.width + 1);
-        // float halfScreenWidthInUnits = UnityEngine.Camera.main.orthographicSize * UnityEngine.Screen.width / UnityEngine.Screen.height;
-        // Debug.Log(UnityEngine.Camera.main.transform.position.x + halfScreenWidthInUnits + 1);
     }
 
     void Update()
