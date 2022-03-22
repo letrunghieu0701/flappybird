@@ -1,0 +1,12 @@
+UE = CS.UnityEngine
+
+
+function LuaStart()
+    self.startPos = self.transform.position.x
+    print(self.startPos)
+    self.length = GetComponent(typeof(SpriteRenderer)).bounds.size.x
+end
+
+function LuaUpdate()
+
+end

@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour
         {
             luaUpdate();
         }
+        
     }
 
     public void ShowGameOverPanel()

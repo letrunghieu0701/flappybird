@@ -2,14 +2,15 @@ UE = CS.UnityEngine
 
 pipe_velocity = 5
 
-liveTime = 6
+liveTime = 4
 m_liveTime = 0
 
 pipe_rb = nil
 
 function LuaStart()
     --print("Running pipe_start")
-    pipe_rb = CS.Extensions.AddRigidbody2D(self.gameObject)
+    --pipe_rb = CS.Extensions.AddRigidbody2D(self.gameObject)
+    pipe_rb = CS.Extensions.GetRigidbody2D(self.gameObject)
     pipe_rb.gravityScale = 0.0
 
     pipe_rb.velocity = UE.Vector2.left * pipe_velocity
