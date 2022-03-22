@@ -4,45 +4,57 @@ UE = CS.UnityEngine
 require('PipeController')
 
 
-distancePipeUpAndDown = 7
+distancePipeUpAndDown = 3.5
 distanceBetweenPipes = 5
 pipeSpawnTime = distanceBetweenPipes / pipe_velocity
 m_pipeSpawnTime = 0
 
 local aspectRatio = UE.Camera.main.aspect
 local halfScreenWidthInUnits = UE.Camera.main.orthographicSize * aspectRatio
-local spawnDistanceFromCameraBoundary = 1
+local spawnDistanceFromCameraBoundary = 1.5
 pipeStartPosX = UE.Camera.main.transform.position.x + halfScreenWidthInUnits + spawnDistanceFromCameraBoundary
 
-cameraSize = UE.Camera.main.orthographicSize
-pipePosMax = UE.Camera.main.orthographicSize
-pipePosMin = 0.8
 
-pipeGap = 3.5
-halfPipeGap = pipeGap / 2
 
-pipeSpawnPos = GetVector3D(pipeStartPosX, cameraSize/2, 0)
+diffCenterPipePairs = 3.5
+halfDiffCenterPipePairs = diffCenterPipePairs / 2
 
-birdStartPos = -4
+pipeScaleY = nil
 
+pipeSpawnPos = GetVector3D(pipeStartPosX, 0, 0)
+
+birdStartPos = UE.Camera.main.transform.position.x - halfScreenWidthInUnits + spawnDistanceFromCameraBoundary
 bird = nil
 bird_rb = nil
+
+cameraSize = UE.Camera.main.orthographicSize
+camBoundaryTop = 1
+-- Cần lấy size (scale Y) của death zone
+deathZoneSizeY = 1
 
 isPlayerLose = false
 
 
-function LuaAwake()
+function SetUpPipeParas()
+    local pipe_temp = CS.Extensions.LoadPrefab("Pipe")
+    pipeScaleY = pipe_temp.transform.localScale.y
+end
+
+function SetUpBird()
     birdPos = GetVector3D(birdStartPos, 0, 0)
     bird = Spawn("Bird", birdPos)
+end
+
+function LuaAwake()
+    SetUpPipeParas()
+
+    SetUpBird()
 
     SpawnPipes()
 end
 
 function LuaStart()
-    --birdPos = GetVector3D(birdStartPos, 0, 0)
-    --bird = Spawn("Bird", birdPos)
 
-    --SpawnPipes()
 end
 
 function LuaUpdate()
@@ -87,14 +99,15 @@ end
 
 function SpawnPipes()
     -- Vị trí cho 2 pipe và score line
-    local pipeUpPos = pipeSpawnPos
-    local pipeDownPos = pipeUpPos - GetVector3D(0, distancePipeUpAndDown, 0)
+    local pipeUpPos = pipeSpawnPos + GetVector3D(0, distancePipeUpAndDown/2 + pipeScaleY/2, 0)
+    print(pipeUpPos)
+    local pipeDownPos = pipeSpawnPos - GetVector3D(0, distancePipeUpAndDown/2 + pipeScaleY/2, 0)
     -- Cộng thêm 1 ở x là để cho cái scoreLine nằm bên phải mấy cái pipe, nghĩa là phải nhảy qua khỏi pipe thì mới được cộng điểm
-    local scoreLinePos = pipeUpPos - GetVector3D(-1, distancePipeUpAndDown/2, 0)
+    local scoreLinePos = pipeSpawnPos
 
     -- Vị trí spawn mới cho 2 pipe tiếp theo
-    local nextSpawnPos = pipeSpawnPos.y + UE.Random.Range(-halfPipeGap, halfPipeGap)
-    adjustNextSpawnPos = UE.Mathf.Clamp(nextSpawnPos, -cameraSize + distancePipeUpAndDown, cameraSize)
+    local nextSpawnPos = pipeSpawnPos.y + UE.Random.Range(-halfDiffCenterPipePairs, halfDiffCenterPipePairs)
+    adjustNextSpawnPos = UE.Mathf.Clamp(nextSpawnPos, -cameraSize + distancePipeUpAndDown/2 + deathZoneSizeY, cameraSize -distancePipeUpAndDown/2 - camBoundaryTop)
     pipeSpawnPos = GetVector3D(pipeStartPosX, adjustNextSpawnPos, 0)
 
     -- Tạo 2 pipes và score line
