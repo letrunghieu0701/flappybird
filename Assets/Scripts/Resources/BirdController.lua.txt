@@ -1,6 +1,6 @@
 UE = CS.UnityEngine
 
-velocity = 2
+velocity = 3
 jumpForce = 5
 
 bird = nill
