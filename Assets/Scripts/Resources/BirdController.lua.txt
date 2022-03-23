@@ -15,7 +15,7 @@ function LuaStart()
 end
 
 function LuaUpdate()
-    if (UE.Input.GetKeyDown(UE.KeyCode.Space)) then
+    if (UE.Input.GetKeyDown(UE.KeyCode.Space) or UE.Input.GetMouseButtonDown(0)) then
         --print("Space pressed")
         bird_rb.velocity = UE.Vector2.up * jumpForce
         UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("Swing")

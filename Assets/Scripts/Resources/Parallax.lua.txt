@@ -2,9 +2,7 @@ UE = CS.UnityEngine
 
 
 function LuaStart()
-    print("Đang chạy start từ Parallax Lua")
     self.startPos = self.transform.position.x
-    print(self.startPos)
     self.length = self.gameObject:GetComponent(typeof(UE.SpriteRenderer)).bounds.size.x
 end
 
@@ -17,6 +15,7 @@ function LuaUpdate()
         self.transform.position = GetVector3D(self.startPos + self.length/2, self.transform.position.y, self.transform.position.z)
     end
 end
+
 
 function GetVector3D(x, y, z)
     return UE.Vector3(x, y, z)
