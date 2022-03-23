@@ -3,38 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using XLua;
 
-public class XLuaEnvironment
+public class XLuaEnvironment: MonoBehaviour
 {
-    private static XLuaEnvironment instance = null;
-    public static LuaEnv luaEnv = new LuaEnv();
+    public static XLuaEnvironment instance = null;
+    public static LuaEnv luaEnv = null;
 
-    public static XLuaEnvironment Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new XLuaEnvironment();
-            }
-            return instance;
-        }
-    }
-
-    // private void Awake()
+    // public static XLuaEnvironment Instance
     // {
-    //     if (__instance == null)
+    //     get
     //     {
-    //         __instance = this;
-    //         luaEnv = new LuaEnv();
-
-    //         DontDestroyOnLoad(gameObject);
+    //         if (instance == null)
+    //         {
+    //             instance = new XLuaEnvironment();
+    //         }
+    //         return instance;
     //     }
-    //     else
-    //     {
-    //         Destroy(gameObject);
-    //     }
-    //     return;
     // }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            luaEnv = new LuaEnv();
+
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        return;
+    }
 
     public LuaTable CreateScriptEnv()
     {

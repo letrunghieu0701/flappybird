@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour
 
     void Awake()
     {
-        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
+        LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv();
         scriptEnv.Set("self", this);
 
         XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
@@ -29,21 +29,18 @@ public class Parallax : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
-        // luaStart();
+        if (luaStart != null)
+        {
+            luaStart();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dist = -parallaxVelocity * Time.deltaTime;
-
-        transform.position = new Vector3(transform.position.x + dist, transform.position.y, transform.position.z);
-
-        if (transform.position.x + length/2 <= startPos)
+        if (luaUpdate != null)
         {
-            transform.position = new Vector3(startPos + length/2, transform.position.y, transform.position.z);
+            luaUpdate();
         }
     }
 }

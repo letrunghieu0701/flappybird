@@ -20,7 +20,7 @@ public class BridController : MonoBehaviour
 
     void Awake()
     {
-        LuaTable scriptEnv = XLuaEnvironment.Instance.CreateScriptEnv();
+        LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv(); 
         scriptEnv.Set("self", this);
 
         XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
