@@ -15,6 +15,8 @@ public delegate void QuitGameDelegate();
 
 public class GameController : MonoBehaviour
 {
+    // public static GameController instance = null;
+    // private static float counter = 0;
     public TextAsset luaScript = null;
 
     // Lua functions
@@ -30,8 +32,38 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+         // If there is an instance, and it's not me, delete myself.
+        
+        
+        // if (instance != null && instance != this)
+        // { 
+        //     Destroy(this);
+        //     return;
+        // } 
+        // else 
+        // { 
+        //     instance = this;
+
+        //     // DontDestroyOnLoad(gameObject);
+        // }
+
+        // counter++;
+        // Debug.Log("Counter: " + counter);
+
+        // if (instance == null)
+        // {
+        //     instance = this;
+        // }
+        // else
+        // {
+        //     Destroy(gameObject);
+        //     return;
+        // }
+        // DontDestroyOnLoad(gameObject);
+
         LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv();
-        scriptEnv.Set("gameOverPanel", gameOverPanel);
+        scriptEnv.Set("self", this);
+        // scriptEnv.Set("gameOverPanel", gameOverPanel);
 
         XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 

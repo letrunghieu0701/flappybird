@@ -25,14 +25,12 @@ pipeSpawnPos = GetVector3D(pipeStartPosX, 0, 0)
 
 birdStartPos = UE.Camera.main.transform.position.x - halfScreenWidthInUnits + spawnDistanceFromCameraBoundary
 bird = nil
-bird_rb = nil
 
 cameraSize = UE.Camera.main.orthographicSize
 camBoundaryTop = 1
 -- Cần lấy size (scale Y) của death zone
 deathZoneSizeY = 1
 
-isPlayerLose = false
 
 
 function SetUpPipeParas()
@@ -45,19 +43,28 @@ function SetUpBird()
     bird = Spawn("Bird", birdPos)
 end
 
-function LuaAwake()
-    SetUpPipeParas()
+function SetupGameOverPanel()
+    --self.gameOverPanel =  UE.GameObject.FindGameObjectWithTag("GameOverPanel")
+    --print(UE.GameObject.FindGameObjectWithTag("GameOverPanel"))
+    --print(self.gameOverPanel)
+end
 
+
+function LuaAwake()
+    
+    --print("Gameoverpanel = " .. self.gameOverPanel)
+    SetUpPipeParas()
     SetUpBird()
 
     SpawnPipes()
 end
 
 function LuaStart()
-
+    --SetupGameOverPanel()
 end
 
 function LuaUpdate()
+    print(bird == nil)
     m_pipeSpawnTime = m_pipeSpawnTime + UE.Time.deltaTime
 
     if (m_pipeSpawnTime >= pipeSpawnTime) then      
@@ -68,18 +75,24 @@ function LuaUpdate()
 end
 
 
+
 function LuaShowGameOverPanel()
-    if (isPlayerLose == true) then
-        return
-    end
+    print("Show GameOverPanel, gọi từ Lua")
 
-    --print("Show GameOverPanel, gọi từ Lua")
-    isPlayerLose = true
 
-    gameOverPanel:SetActive(true)
-
-    -- Stop the game
+    self.gameOverPanel:SetActive(true)
     UE.Time.timeScale = 0
+
+    --[[
+    gameOverPanel = UE.GameObject.FindGameObjectWithTag("GameOverPanel")
+    --gameOverPanel = UE.Object.FindObjectOfType(typeof(CS.GameOverPanel))
+    if (gameOverPanel ~= nil) then
+        -- Stop the game
+        UE.Time.timeScale = 0
+        gameOverPanel:Show()
+    end
+    --]]
+
 end
 
 function LuaRestartGame()

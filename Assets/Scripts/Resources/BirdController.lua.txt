@@ -25,7 +25,7 @@ end
 
 function LuaOnCollisionEnter2D(other)
     if (other.gameObject:CompareTag("Pipe") == true) then
-        --print("Bird va chạm với Pipe, gọi từ Lua")
+--        print("Bird va chạm với Pipe, gọi từ Lua")
         HandleGameOver()
     end
 end
@@ -43,7 +43,12 @@ function HandleGameOver()
     audioManager:Play("Lose")
 
     UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
-end
+    --CS.GameController.instance:ShowGameOverPanel()
+    
+    --gameOverPanel = UE.GameObject.FindGameObjectWithTag("GameOverPanel")
+    --gameOverPanel = UE.Object.FindObjectOfType(typeof(CS.GameOverPanel))
+    --gameOverPanel:Show()
+    end
 
 
 function GetVector3D(x, y, z)

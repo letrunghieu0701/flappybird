@@ -18,8 +18,11 @@ public class BridController : MonoBehaviour
     OnCollisionEnter2DDelegate luaOnCollisionEnter2D = null;
     OnTriggerEnter2DDelegate luaOnTriggerEnter2D = null;
 
+    // GameOverPanel pn;
     void Awake()
     {
+        // DontDestroyOnLoad(gameObject);
+
         LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv(); 
         scriptEnv.Set("self", this);
 
@@ -30,6 +33,8 @@ public class BridController : MonoBehaviour
 
         luaOnCollisionEnter2D = scriptEnv.Get<OnCollisionEnter2DDelegate>("LuaOnCollisionEnter2D");
         luaOnTriggerEnter2D = scriptEnv.Get<OnTriggerEnter2DDelegate>("LuaOnTriggerEnter2D");
+
+        // pn = FindObjectOfType<GameOverPanel>();
     }
 
     void Start()
@@ -54,6 +59,8 @@ public class BridController : MonoBehaviour
         {
             luaOnCollisionEnter2D(other);
         }
+        
+        // pn.Show();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
