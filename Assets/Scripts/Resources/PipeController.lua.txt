@@ -2,9 +2,6 @@ UE = CS.UnityEngine
 
 pipe_velocity = 5
 
-liveTime = 4
-m_liveTime = 0
-
 pipe_rb = nil
 
 function LuaStart()
@@ -17,16 +14,6 @@ function LuaStart()
 end
 
 function LuaUpdate()
-    --print("Running pipe_update")
-    
-    m_liveTime = m_liveTime + UE.Time.deltaTime
-
-    if (m_liveTime >= liveTime) then
-        --print("Đã tới lúc Destroy pipe")
-
-        m_liveTime = 0
-        UE.Object.Destroy(self.gameObject)
-    end
 end
 
 
