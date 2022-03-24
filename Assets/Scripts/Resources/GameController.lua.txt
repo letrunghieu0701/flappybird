@@ -34,8 +34,8 @@ deathZoneSizeY = 1
 
 
 function SetUpPipeParas()
-    local pipe_temp = CS.Extensions.LoadPrefab("Pipe")
-    pipeScaleY = pipe_temp.transform.localScale.y
+    local pipe_temp = CS.Extensions.LoadPrefab("PipeTop")
+    pipeScaleY = pipe_temp:GetComponent(typeof(UE.Renderer)).bounds.size.y
 end
 
 function SetUpBird()
@@ -64,7 +64,6 @@ function LuaStart()
 end
 
 function LuaUpdate()
-    print(bird == nil)
     m_pipeSpawnTime = m_pipeSpawnTime + UE.Time.deltaTime
 
     if (m_pipeSpawnTime >= pipeSpawnTime) then      
@@ -122,8 +121,8 @@ function SpawnPipes()
     pipeSpawnPos = GetVector3D(pipeStartPosX, adjustNextSpawnPos, 0)
 
     -- Tạo 2 pipes và score line
-    Spawn("Pipe", pipeUpPos)
-    Spawn("Pipe", pipeDownPos)
+    Spawn("PipeTop", pipeUpPos)
+    Spawn("PipeBottom", pipeDownPos)
     Spawn("ScoreLine", scoreLinePos)
 end
 

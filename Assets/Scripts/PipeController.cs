@@ -29,7 +29,7 @@ public class PipeController : MonoBehaviour
         if (luaStart != null)
         {
             luaStart();
-        }     
+        }
     }
 
     void Update()
