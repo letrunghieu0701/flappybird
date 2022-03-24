@@ -9,6 +9,7 @@ public class GameOverPanel : MonoBehaviour
     //     gameObject.SetActive(true);
     //     DontDestroyOnLoad(gameObject);
     // }
+
     // // Start is called before the first frame update
     // void Start()
     // {
@@ -16,11 +17,11 @@ public class GameOverPanel : MonoBehaviour
     //     gameObject.SetActive(false);
     // }
 
-    // // Update is called once per frame
-    // void Update()
-    // {
+    // // // Update is called once per frame
+    // // void Update()
+    // // {
         
-    // }
+    // // }
 
     // public void Show()
     // {

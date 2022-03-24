@@ -77,8 +77,7 @@ end
 
 
 function LuaShowGameOverPanel()
-    print("Show GameOverPanel, gọi từ Lua")
-
+    --print("Show GameOverPanel, gọi từ Lua")
 
     self.gameOverPanel:SetActive(true)
     UE.Time.timeScale = 0

@@ -4,3 +4,7 @@ function LuaStartGame()
     local gameSceneIndex = 1
     UE.SceneManagement.SceneManager.LoadScene(gameSceneIndex)
 end
+
+function LuaQuitGame()
+    UE.Application.Quit()
+end
