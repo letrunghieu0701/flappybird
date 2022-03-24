@@ -42,7 +42,8 @@ function HandleGameOver()
     audioManager:Play("HitObject")
     audioManager:Play("Lose")
 
-    UE.Object.FindObjectOfType(typeof(CS.GameController)):ShowGameOverPanel()
+    gameController = UE.Object.FindObjectOfType(typeof(CS.GameController))
+    gameController:ShowGameOverPanel()
     --CS.GameController.instance:ShowGameOverPanel()
     
     --gameOverPanel = UE.GameObject.FindGameObjectWithTag("GameOverPanel")

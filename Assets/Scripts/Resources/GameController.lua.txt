@@ -4,7 +4,7 @@ UE = CS.UnityEngine
 require('PipeController')
 
 
-distancePipeUpAndDown = 3.5
+distancePipeUpAndDown = 2.5
 distanceBetweenPipes = 5
 pipeSpawnTime = distanceBetweenPipes / pipe_velocity
 m_pipeSpawnTime = 0
@@ -78,6 +78,7 @@ end
 function LuaShowGameOverPanel()
     --print("Show GameOverPanel, gọi từ Lua")
 
+    self.isGameOver = true
     self.gameOverPanel:SetActive(true)
     UE.Time.timeScale = 0
 

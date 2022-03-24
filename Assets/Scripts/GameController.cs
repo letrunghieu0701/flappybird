@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     QuitGameDelegate luaQuitGame = null;
 
 
+    public bool isGameOver {get; set;}
     public GameObject gameOverPanel = null;
 
     void Awake()
@@ -74,6 +75,7 @@ public class GameController : MonoBehaviour
         luaRestartGame = scriptEnv.Get<RestartGameDelegate>("LuaRestartGame");
         luaQuitGame = scriptEnv.Get<QuitGameDelegate>("LuaQuitGame");
 
+
         luaAwake();
         gameOverPanel.SetActive(false);
     }
@@ -109,8 +111,6 @@ public class GameController : MonoBehaviour
         {
             luaRestartGame();
         }
-
-        Time.timeScale = 1;
 
         // if (gameHasEnded == true)
         // {
