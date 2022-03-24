@@ -1,0 +1,32 @@
+UE = CS.UnityEngine
+xlua.private_accessible(CS.PauseGame)
+
+function LuaStart()
+    self.gameController = UE.Object.FindObjectOfType(typeof(CS.GameController))
+    self.image = self.gameObject:GetComponent(typeof(UE.UI.Image))
+    self.image.enabled = false
+    self.isPausing = false
+end
+
+function LuaUpdate()
+print("chay update")
+    if (self.gameController.isGameOver == true) then
+        return
+    end
+
+    if (UE.Input.GetKeyDown(UE.KeyCode.Escape)) then
+        HandlePause()
+    end
+end
+
+function HandlePause()
+    if (self.isPausing == false) then
+        UE.Time.timeScale = 0
+        self.isPausing = true
+        self.image.enabled = true
+    else
+        UE.Time.timeScale = 1
+        self.isPausing = false
+        self.image.enabled = false
+    end
+end

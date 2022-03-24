@@ -1,48 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using XLua;
 
 
 public class PauseGame : MonoBehaviour
 {
+    private bool isPausing;
+    private GameController gameController = null;
+    private Image image = null;
 
-    public static bool isPausing;
-    GameController gameController = null;
+    public TextAsset luaScript = null;
+    StartDelegate luaStart = null;
+    UpdateDelegate luaUpdate = null;
+
+    void Awake()
+    {
+        LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv();
+        scriptEnv.Set("self", this);
+
+        XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
+
+        luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
+        luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        isPausing = false;
-        gameController = FindObjectOfType<GameController>();
+        if (luaStart != null)
+        {
+            luaStart();
+        }
+
+        // image = GetComponent<Image>();
+        // Component a = new Component();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameController.isGameOver == true)
+        if (luaUpdate != null)
         {
-            gameObject.SetActive(false);
-            return;
-        }
-
-        gameObject.SetActive(true);
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            HandlePause();
-        }
-    }
-
-    public static void HandlePause()
-    {
-        if (isPausing == false)
-        {
-            Time.timeScale = 0;
-            isPausing = true;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            isPausing = false;
+            luaUpdate();
         }
     }
 }
