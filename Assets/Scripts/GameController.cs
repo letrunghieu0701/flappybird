@@ -63,7 +63,6 @@ public class GameController : MonoBehaviour
 
         LuaTable scriptEnv = XLuaEnvironment.instance.CreateScriptEnv();
         scriptEnv.Set("self", this);
-        // scriptEnv.Set("gameOverPanel", gameOverPanel);
 
         XLuaEnvironment.luaEnv.DoString(luaScript.text, luaScript.name, scriptEnv);
 

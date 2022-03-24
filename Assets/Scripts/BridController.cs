@@ -74,5 +74,6 @@ public class BridController : MonoBehaviour
     public void IncreaseScore()
     {
         score++;
+        PlayerPrefs.SetInt("HighScore", score);
     }
 }
