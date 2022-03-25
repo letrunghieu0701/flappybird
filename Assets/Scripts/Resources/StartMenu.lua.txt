@@ -2,9 +2,11 @@ UE = CS.UnityEngine
 
 function LuaStartGame()
     local gameSceneIndex = 1
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("StartBtn")
     UE.SceneManagement.SceneManager.LoadScene(gameSceneIndex)
 end
 
 function LuaQuitGame()
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("QuitBtn")
     UE.Application.Quit()
 end

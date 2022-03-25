@@ -9,7 +9,6 @@ function LuaStart()
 end
 
 function LuaUpdate()
-print("chay update")
     if (self.gameController.isGameOver == true) then
         return
     end

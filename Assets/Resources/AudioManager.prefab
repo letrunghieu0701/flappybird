@@ -58,18 +58,42 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: LK
     clip: {fileID: 8300000, guid: fe229e3bd03ffc64cb8efc237d7548c9, type: 3}
-    volume: 0.5
+    volume: 0
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: HitObject
-    clip: {fileID: 8300000, guid: f9c1fcc0d3dfa204089993ffb4d4f4e9, type: 3}
-    volume: 0.5
+  - name: Swing
+    clip: {fileID: 8300000, guid: 1d5e8b6762f54b14f8e0cc852dee4c7f, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Swing
-    clip: {fileID: 8300000, guid: 611d48a586fa39a47b7440d100672ff9, type: 3}
+  - name: Lose
+    clip: {fileID: 8300000, guid: 257333003a1a46948aa242740040f775, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: b10603a87fc59fd4cbd3d372c85bdcaa, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartBtn
+    clip: {fileID: 8300000, guid: 3e80b7f792dfd5940a009b8c92026119, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RestartBtn
+    clip: {fileID: 8300000, guid: a00a27dacfcc94b4abbe9ec734a8abea, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: QuitBtn
+    clip: {fileID: 8300000, guid: f83aa42b6bd2e6b40838125551b3bcca, type: 3}
     volume: 1
     pitch: 1
     loop: 0

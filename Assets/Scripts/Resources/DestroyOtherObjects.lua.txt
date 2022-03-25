@@ -4,7 +4,6 @@ function LuaOnTriggerEnter2D(other)
     othersTag = other.gameObject.tag
             
     if (othersTag == "Pipe" or othersTag == "ScoreLine") then
-        UE.Debug.Log(othersTag)
         UE.Object.Destroy(other.gameObject)
     end
 

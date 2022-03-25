@@ -6,15 +6,21 @@ jumpForce = 5
 bird = nill
 bird_rb = nil
 
+gameController = nil
+
 
 function LuaStart()
-    --print("Goi start tu Lua")
-    
     bird = self.gameObject
     bird_rb = CS.Extensions.AddRigidbody2D(bird)
+
+    gameController = UE.Object.FindObjectOfType(typeof(CS.GameController))
 end
 
 function LuaUpdate()
+    if (gameController.isGameOver == true) then
+        return
+    end
+
     if (UE.Input.GetKeyDown(UE.KeyCode.Space) or UE.Input.GetMouseButtonDown(0)) then
         --print("Space pressed")
         bird_rb.velocity = UE.Vector2.up * jumpForce
@@ -38,11 +44,9 @@ function LuaOnTriggerEnter2D(other)
 end
 
 function HandleGameOver()
-    audioManager = UE.Object.FindObjectOfType(typeof(CS.AudioManager))
-    audioManager:Play("HitObject")
-    audioManager:Play("Lose")
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("Hit")
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("Lose")
 
-    gameController = UE.Object.FindObjectOfType(typeof(CS.GameController))
     gameController:ShowGameOverPanel()
     --CS.GameController.instance:ShowGameOverPanel()
     

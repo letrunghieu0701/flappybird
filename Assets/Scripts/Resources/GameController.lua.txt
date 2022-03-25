@@ -99,10 +99,12 @@ function LuaRestartGame()
 
     -- Continue the game
     UE.Time.timeScale = 1
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("RestartBtn")
     UE.SceneManagement.SceneManager.LoadScene(UE.SceneManagement.SceneManager.GetActiveScene().name)
 end
 
 function LuaQuitGame()
+    UE.Object.FindObjectOfType(typeof(CS.AudioManager)):Play("QuitBtn")
     UE.Application.Quit()
 end
 
