@@ -24,6 +24,8 @@ public class PauseGame : MonoBehaviour
 
         luaStart = scriptEnv.Get<StartDelegate>("LuaStart");
         luaUpdate = scriptEnv.Get<UpdateDelegate>("LuaUpdate");
+
+        gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update
